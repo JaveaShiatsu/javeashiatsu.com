@@ -416,6 +416,34 @@
     }
     .btn-submit:hover { background: var(--accent-light); transform: translateY(-1px); }
 
+    /* WHAT TO EXPECT */
+    .expect {
+      padding: 6rem;
+      background: var(--paper);
+    }
+    .expect-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .expect-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-top: 0.75rem;
+    }
+    .expect-header h2 em { font-style: italic; color: var(--accent); }
+    .expect-body p {
+      font-size: 0.97rem;
+      color: var(--ink-light);
+      line-height: 1.9;
+      margin-bottom: 1.1rem;
+    }
+    .expect-body p:last-child { margin-bottom: 0; }
+
     /* FOOTER */
     footer {
       border-top: 1px solid var(--line);
@@ -450,14 +478,16 @@
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
       .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 7rem 1.5rem 3rem; }
-      .hero-right { display: none; }
+      .hero-left { padding: 4.5rem 1.5rem 3rem; }
+      .hero-right { display: flex; min-height: 260px; }
       .intro, .about, .services { padding: 4rem 1.5rem; }
       .intro, .about { grid-template-columns: 1fr; gap: 2rem; }
       .services-header { grid-template-columns: 1fr; gap: 2rem; }
       .services-grid { grid-template-columns: 1fr; gap: 2px; }
       .contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
       footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      .expect { padding: 4rem 1.5rem; }
+      .expect-inner { grid-template-columns: 1fr; gap: 2rem; }
       .divider { padding: 0 1.5rem; }
     }
   </style>
@@ -496,19 +526,14 @@
     </div>
   </section>
 
-  <!-- DIVIDER -->
-  <div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-symbol">✦</div>
-    <div class="divider-line"></div>
-  </div>
 
   <!-- INTRO -->
   <section class="intro">
     <div class="section-label">Philosophy</div>
     <div class="intro-text">
-      <p>Shiatsu is more than touch — it is a dialogue between practitioner and body, a listening that reaches beneath the surface to where energy gathers, stagnates, or calls for release.</p>
-      <p>Rooted in the Zen tradition, this practice honours stillness as much as movement, presence as much as technique.</p>
+      <p>Zen Shiatsu is a traditional Japanese healing method that uses gentle pressure to release blockages and restore the body's natural flow of energy — known as <em>Ki</em>.</p>
+      <p>Work focuses along the body's meridian channels, the pathways through which this energy moves. Though Shiatsu literally means 'finger pressure', its true essence is communication through touch.</p>
+      <p>The result is deep relaxation, mental clarity, reduced stress, and relief from pain and tension — alongside improved circulation and the body's own capacity to restore itself.</p>
     </div>
   </section>
 
@@ -526,9 +551,6 @@
       </p>
       <p>
         Each session is shaped entirely around you. I listen to what your body communicates before a single word is spoken, and work with — never against — the intelligence it already holds.
-      </p>
-      <p>
-        Based in beautiful Javea on the Costa Blanca, I welcome clients seeking relief from physical tension, emotional stress, or simply the desire to feel more at home in themselves.
       </p>
       <p>
         Sessions can take place at a professional studio, or I am happy to come to you at your home — whichever setting allows you to feel most relaxed and at ease.
@@ -590,12 +612,22 @@
     </div>
   </section>
 
-  <!-- DIVIDER -->
-  <div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-symbol">✦</div>
-    <div class="divider-line"></div>
-  </div>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="expect">
+    <div class="expect-inner">
+      <div class="expect-header">
+        <p class="section-label">Treatment</p>
+        <h2>What to Expect from a <em>Shiatsu Treatment</em></h2>
+      </div>
+      <div class="expect-body">
+        <p>Rooted in the same principles as Chinese Acupuncture and Traditional Chinese Medicine, Shiatsu is a gentle, non-invasive therapy that works with the body's natural energy rather than against it.</p>
+        <p>Sessions are conducted fully clothed — you simply wear something light and comfortable, and lie on a futon on the floor. If needed, the treatment can easily be adapted to a chair or massage table.</p>
+        <p>Pressure is applied using thumbs, fingers, elbows, forearms and feet, combined with gentle stretches drawing on both Western physiotherapy and Oriental yoga traditions.</p>
+        <p>No undressing, no oils, no elaborate preparation — Shiatsu fits naturally into any setting or time of day.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACT -->
   <section id="contact" class="contact">
