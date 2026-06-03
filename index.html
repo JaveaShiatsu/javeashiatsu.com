@@ -507,6 +507,34 @@
       .expect-inner { grid-template-columns: 1fr; gap: 2rem; }
       .divider { padding: 0 1.5rem; }
     }
+
+    /* LANGUAGE SWITCHER */
+    .lang-switcher {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+    .lang-btn {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      transition: color 0.2s;
+    }
+    .lang-btn:hover { color: var(--ink); }
+    .lang-btn.active {
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+    }
+    .lang-sep { color: var(--line); font-size: 0.7rem; }
+    [data-es] { display: none; }
+    body.es [data-en] { display: none; }
+    body.es [data-es] { display: revert; }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4205H5Z0B"></script>
@@ -523,25 +551,35 @@
   <nav>
     <a href="#" class="nav-logo">Javea Shiatsu</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-en>About</a><a href="#about" data-es>Sobre mí</a></li>
+      <li><a href="#services" data-en>Services</a><a href="#services" data-es>Servicios</a></li>
+      <li><a href="#contact" data-en>Contact</a><a href="#contact" data-es>Contacto</a></li>
     </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <p class="hero-eyebrow">Zen Shiatsu · Javea, Spain</p>
-      <h1 class="hero-title">
+      <p class="hero-eyebrow" data-en>Zen Shiatsu · Javea, Spain</p><p class="hero-eyebrow" data-es>Masaje Zen Shiatsu · Jávea, España</p>
+      <h1 class="hero-title" data-en>
         Relax.<br>
         <em>Restore.</em><br>
         Renew.
       </h1>
+      <h1 class="hero-title" data-es>
+        Relájate.<br>
+        <em>Recupérate.</em><br>
+        Renuévate.
+      </h1>
       <p class="hero-subtitle">
-        Zen Shiatsu combines the benefits of massage therapy with traditional Japanese healing — a deeply soothing treatment for both body and mind.
+        <span data-en>Zen Shiatsu combines the benefits of massage therapy with traditional Japanese healing — a deeply soothing treatment for both body and mind.</span><span data-es>El Zen Shiatsu combina los beneficios del masaje terapéutico con la medicina tradicional japonesa — un tratamiento profundamente relajante para el cuerpo y la mente.</span>
       </p>
-      <a href="#contact" class="btn-primary">Book a session</a>
+      <a href="#contact" class="btn-primary" data-en>Book a session</a><a href="#contact" class="btn-primary" data-es>Reserva una sesión</a>
     </div>
     <div class="hero-right">
       <div class="hero-illustration" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;overflow:hidden;">
@@ -554,11 +592,19 @@
 
   <!-- INTRO -->
   <section class="intro">
-    <div class="section-label">Philosophy</div>
+    <div class="section-label" data-en>Philosophy</div>
+    <div class="section-label" data-es>Filosofía</div>
     <div class="intro-text">
-      <p>Zen Shiatsu is a traditional Japanese healing method that uses gentle pressure to release blockages and restore the body's natural flow of energy — known as <em>Ki</em>.</p>
-      <p>Work focuses along the body's meridian channels, the pathways through which this energy moves. Though Shiatsu literally means 'finger pressure', its true essence is communication through touch.</p>
-      <p>The result is deep relaxation, mental clarity, reduced stress, and relief from pain and tension — alongside improved circulation and the body's own capacity to restore itself.</p>
+      <span data-en>
+        <p>Zen Shiatsu is a traditional Japanese healing method that uses gentle pressure to release blockages and restore the body's natural flow of energy — known as <em>Ki</em>.</p>
+        <p>Work focuses along the body's meridian channels, the pathways through which this energy moves. Though Shiatsu literally means 'finger pressure', its true essence is communication through touch.</p>
+        <p>The result is deep relaxation, mental clarity, reduced stress, and relief from pain and tension — alongside improved circulation and the body's own capacity to restore itself.</p>
+      </span>
+      <span data-es>
+        <p>El Zen Shiatsu es un método de curación japonés tradicional que utiliza presión suave para liberar bloqueos y restaurar el flujo natural de energía del cuerpo — conocida como <em>Ki</em>.</p>
+        <p>El trabajo se centra en los canales meridianos del cuerpo, las vías por las que fluye esta energía. Aunque Shiatsu literalmente significa 'presión con los dedos', su verdadera esencia es la comunicación a través del tacto.</p>
+        <p>El resultado es una relajación profunda, claridad mental, reducción del estrés y alivio del dolor y la tensión — junto con una mejor circulación y la capacidad natural del cuerpo para recuperarse.</p>
+      </span>
     </div>
   </section>
 
@@ -568,22 +614,33 @@
       <img src="data:image/jpeg;base64,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" alt="Practitioner portrait" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
     </div>
     <div class="about-content">
-      <p class="section-label" style="margin-bottom:0.6rem;">About</p>
+      <p class="section-label" style="margin-bottom:0.6rem;" data-en>About</p><p class="section-label" style="margin-bottom:0.6rem;" data-es>Sobre mí</p>
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--ink);letter-spacing:0.01em;margin-bottom:1rem;">Bjarke Osmundsen</p>
-      <h2>A practice built on <em>presence</em></h2>
-      <p>
+      <h2 data-en>A practice built on <em>presence</em></h2><h2 data-es>Una práctica basada en la <em>presencia</em></h2>
+      <p data-en>
         I discovered Zen Shiatsu through my own journey of healing and have dedicated years to deepening this practice — studying its roots in Traditional Chinese Medicine, its expression through the Zen lineage, and its application to the challenges of modern life.
       </p>
-      <p>
+      <p data-es>
+        Descubrí el Zen Shiatsu a través de mi propio proceso de curación y he dedicado años a profundizar en esta práctica — estudiando sus raíces en la Medicina Tradicional China, su expresión en el linaje Zen, y su aplicación a los retos de la vida moderna.
+      </p>
+      <p data-en>
         Each session is shaped entirely around you. Through attentive touch, I listen to what your body communicates and work to release the tensions it has been holding.
       </p>
-      <p>
+      <p data-es>
+        Cada sesión se adapta completamente a ti. A través del tacto atento, escucho lo que tu cuerpo comunica y trabajo para liberar las tensiones que ha ido acumulando.
+      </p>
+      <p data-en>
         Sessions can take place at a professional studio, or I am happy to come to you at your home — whichever setting allows you to feel most relaxed and at ease.
       </p>
+      <p data-es>
+        Las sesiones pueden realizarse en un estudio profesional o puedo desplazarme a tu domicilio — lo que te resulte más cómodo y relajante.
+      </p>
       <div class="credentials">
-        <div class="credential-item">Certified Shiatsu Practitioner — European Shiatsu &amp; Yoga Academy</div>
-        <div class="credential-item">Training in Traditional Chinese Medicine meridian theory</div>
-        <div class="credential-item">Based in Javea, Costa Blanca, Spain</div>
+        <div class="credential-item" data-en>Certified Shiatsu Practitioner — European Shiatsu &amp; Yoga Academy</div>
+        <div class="credential-item" data-es>Terapeuta certificado de Shiatsu — European Shiatsu &amp; Yoga Academy</div>
+        <div class="credential-item" data-en>Training in Traditional Chinese Medicine meridian theory</div>
+        <div class="credential-item" data-es>Formación en teoría de meridianos de la Medicina Tradicional China</div>
+        <div class="credential-item">Javea, Costa Blanca, España</div>
       </div>
     </div>
   </section>
@@ -592,47 +649,51 @@
   <section id="services" class="services">
     <div class="services-header">
       <div class="services-header-left">
-        <h2>Ways I can <em>help</em></h2>
+        <h2 data-en>Ways I can <em>help</em></h2><h2 data-es>Cómo puedo <em>ayudarte</em></h2>
         <p class="services-intro">
-          Each offering is designed to meet you where you are — whether you are experiencing acute discomfort, managing ongoing stress, or simply wish to maintain your wellbeing through regular practice. Shiatsu is equally valuable as preventive care for those simply wishing to feel more vital and at ease in daily life.
+          <span data-en>Each offering is designed to meet you where you are — whether you are experiencing acute discomfort, managing ongoing stress, or simply wish to maintain your wellbeing through regular practice. Shiatsu is equally valuable as preventive care for those simply wishing to feel more vital and at ease in daily life.</span>
+          <span data-es>Cada servicio está diseñado para encontrarte donde estás — ya sea que sufras molestias, manejes el estrés o simplemente desees mantener tu bienestar. El Shiatsu también es valioso como cuidado preventivo para quienes desean sentirse más vitales y en equilibrio en su vida diaria.</span>
         </p>
       </div>
       <div>
-        <p class="conditions-label">Examples of conditions Shiatsu can alleviate</p>
+        <p class="conditions-label" data-en>Examples of conditions Shiatsu can alleviate</p><p class="conditions-label" data-es>Ejemplos de dolencias que el Shiatsu puede aliviar</p>
         <div class="conditions-grid">
-          <span>Headaches &amp; migraines</span>
-          <span>Neck &amp; shoulder tension</span>
-          <span>Lower back pain &amp; sciatica</span>
-          <span>Digestive disorders</span>
-          <span>Insomnia &amp; fatigue</span>
-          <span>Anxiety &amp; depression</span>
-          <span>Circulatory problems</span>
-          <span>Rheumatic conditions</span>
-          <span class="more">… and many more</span>
+          <span data-en>Headaches &amp; migraines</span><span data-es>Cefaleas y migrañas</span>
+          <span data-en>Neck &amp; shoulder tension</span><span data-es>Tensión cervical y de hombros</span>
+          <span data-en>Lower back pain &amp; sciatica</span><span data-es>Dolor lumbar y ciática</span>
+          <span data-en>Digestive disorders</span><span data-es>Trastornos digestivos</span>
+          <span data-en>Insomnia &amp; fatigue</span><span data-es>Insomnio y fatiga</span>
+          <span data-en>Anxiety &amp; depression</span><span data-es>Ansiedad y depresión</span>
+          <span data-en>Circulatory problems</span><span data-es>Problemas circulatorios</span>
+          <span data-en>Rheumatic conditions</span><span data-es>Condiciones reumáticas</span>
+          <span class="more" data-en>… and many more</span><span class="more" data-es>… y muchos más</span>
         </div>
       </div>
     </div>
     <div class="services-grid">
       <div class="service-card" style="cursor:pointer;" onclick="selectService('Initial Session (90 min)')">
         <div class="service-number">01</div>
-        <div class="service-title">Initial Session</div>
+        <div class="service-title" data-en>Initial Session</div><div class="service-title" data-es>Sesión Inicial</div>
         <div class="service-duration">90 minutes &nbsp;·&nbsp; €65</div>
-        <p class="service-desc">A thorough intake conversation followed by a full Zen Shiatsu treatment. We explore your health history, current concerns, and establish a foundation for ongoing care.</p>
-        <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Book this →</div>
+        <p class="service-desc" data-en>A thorough intake conversation followed by a full Zen Shiatsu massage treatment. We explore your health history, current concerns, and establish a foundation for ongoing care.</p>
+        <p class="service-desc" data-es>Una consulta inicial detallada seguida de un tratamiento completo de masaje Zen Shiatsu. Exploramos tu historial de salud y establecemos las bases para tu bienestar.</p>
+        <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-en>Book this →</div><div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-es>Reservar →</div>
       </div>
       <div class="service-card" style="cursor:pointer;" onclick="selectService('Shiatsu Treatment (60 min)')">
         <div class="service-number">02</div>
-        <div class="service-title">Shiatsu Treatment</div>
+        <div class="service-title" data-en>Shiatsu Treatment</div><div class="service-title" data-es>Tratamiento Shiatsu</div>
         <div class="service-duration">60 minutes &nbsp;·&nbsp; €50</div>
-        <p class="service-desc">A complete Zen Shiatsu session working along the meridians of the body to dissolve tension, release blocked energy, and restore natural flow and vitality.</p>
-        <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Book this →</div>
+        <p class="service-desc" data-en>A complete Zen Shiatsu massage session working along the meridians of the body to dissolve tension, release blocked energy, and restore natural flow and vitality.</p>
+        <p class="service-desc" data-es>Una sesión completa de masaje Zen Shiatsu que trabaja a lo largo de los meridianos del cuerpo para disolver la tensión y restaurar el flujo natural de energía.</p>
+        <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-en>Book this →</div><div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-es>Reservar →</div>
       </div>
       <div class="service-card" style="cursor:pointer;" onclick="selectService('Wellbeing Programme (6 sessions)')">
         <div class="service-number">03</div>
-        <div class="service-title">Wellbeing Programme</div>
-        <div class="service-duration">Series of 6 sessions &nbsp;·&nbsp; €250</div>
-        <p class="service-desc">A dedicated programme of six sessions tailored to your specific goals. Regular shiatsu deepens its effects over time, supporting sustained balance and resilience.</p>
-        <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Book this →</div>
+        <div class="service-title" data-en>Wellbeing Programme</div><div class="service-title" data-es>Programa de Bienestar</div>
+        <div class="service-duration" data-en>Series of 6 sessions &nbsp;·&nbsp; €250</div><div class="service-duration" data-es>Serie de 6 sesiones &nbsp;·&nbsp; €250</div>
+        <p class="service-desc" data-en>A dedicated programme of six sessions tailored to your specific goals. Regular shiatsu massage deepens its effects over time, supporting sustained balance and resilience.</p>
+        <p class="service-desc" data-es>Un programa dedicado de seis sesiones adaptado a tus objetivos. El masaje Shiatsu regular profundiza sus efectos con el tiempo, favoreciendo el equilibrio y la resiliencia.</p>
+        <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-en>Book this →</div><div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-es>Reservar →</div>
       </div>
     </div>
   </section>
@@ -642,14 +703,22 @@
   <section class="expect">
     <div class="expect-inner">
       <div class="expect-header">
-        <p class="section-label">Treatment</p>
-        <h2>What to Expect from a <em>Shiatsu Treatment</em></h2>
+        <p class="section-label" data-en>Treatment</p><p class="section-label" data-es>El Tratamiento</p>
+        <h2 data-en>What to Expect from a <em>Shiatsu Treatment</em></h2><h2 data-es>¿Qué esperar de un <em>masaje Shiatsu</em>?</h2>
       </div>
       <div class="expect-body">
-        <p>Rooted in the same principles as Chinese Acupuncture and Traditional Chinese Medicine, Shiatsu is a gentle, non-invasive therapy that works with the body's natural energy rather than against it.</p>
-        <p>Sessions are conducted fully clothed — you simply wear something light and comfortable, and lie on a futon on the floor. If needed, the treatment can easily be adapted to a chair or massage table.</p>
-        <p>Pressure is applied using thumbs, fingers, elbows, forearms and feet, combined with gentle stretches drawing on both Western physiotherapy and Oriental yoga traditions.</p>
-        <p>No undressing, no oils, no elaborate preparation — Shiatsu fits naturally into any setting or time of day.</p>
+        <span data-en>
+          <p>Rooted in the same principles as Chinese Acupuncture and Traditional Chinese Medicine, Shiatsu is a gentle, non-invasive massage therapy that works with the body's natural energy rather than against it.</p>
+          <p>Sessions are conducted fully clothed — you simply wear something light and comfortable, and lie on a futon on the floor. If needed, the treatment can easily be adapted to a chair or massage table.</p>
+          <p>Pressure is applied using thumbs, fingers, elbows, forearms and feet, combined with gentle stretches drawing on both Western physiotherapy and Oriental yoga traditions.</p>
+          <p>No undressing, no oils, no elaborate preparation — Shiatsu fits naturally into any setting or time of day.</p>
+        </span>
+        <span data-es>
+          <p>Con las mismas raíces que la Acupuntura China y la Medicina Tradicional China, el Shiatsu es una terapia de masaje suave y no invasiva que trabaja con la energía natural del cuerpo en lugar de ir en su contra.</p>
+          <p>Las sesiones se realizan con ropa puesta — simplemente usa algo ligero y cómodo, y túmbate sobre un futón en el suelo. Si es necesario, el tratamiento puede adaptarse fácilmente a una silla o camilla de masaje.</p>
+          <p>El terapeuta aplica presión con pulgares, dedos, codos, antebrazos y pies, combinada con estiramientos suaves de tradiciones tanto de fisioterapia occidental como de yoga oriental.</p>
+          <p>Sin desvestirse, sin aceites, sin preparación elaborada — el masaje Shiatsu se adapta naturalmente a cualquier entorno o momento del día.</p>
+        </span>
       </div>
     </div>
   </section>
@@ -657,10 +726,10 @@
   <!-- CONTACT -->
   <section id="contact" class="contact">
     <div class="contact-left">
-      <p class="section-label" style="color:rgba(249,247,243,0.4); margin-bottom:1rem;">Contact</p>
-      <h2>Begin your <em>journey</em></h2>
+      <p class="section-label" style="color:rgba(249,247,243,0.4); margin-bottom:1rem;" data-en>Contact</p><p class="section-label" style="color:rgba(249,247,243,0.4); margin-bottom:1rem;" data-es>Contacto</p>
+      <h2 data-en>Begin your <em>journey</em></h2><h2 data-es>Comienza tu <em>camino</em></h2>
       <p>
-        I would love to hear from you. Send a message to ask any questions or to arrange your first session. I typically respond within one working day.
+        <span data-en>I would love to hear from you. Send a message to ask any questions or to arrange your first session. I typically respond within one working day.</span><span data-es>Me encantaría saber de ti. Envíame un mensaje para hacer preguntas o concertar tu primera sesión. Normalmente respondo en un día laborable.</span>
       </p>
       <div class="contact-details">
         <div class="contact-detail">
@@ -685,54 +754,63 @@
     </div>
     <div class="contact-form">
       <div class="form-group">
-        <label>Your name</label>
-        <input type="text" placeholder="Full name" />
+        <label data-en>Your name</label><label data-es>Tu nombre</label>
+        <input type="text" placeholder="Nombre completo" />
       </div>
       <div class="form-group">
-        <label>Email address</label>
+        <label data-en>Email address</label><label data-es>Correo electrónico</label>
         <input type="email" placeholder="your@email.com" />
       </div>
       <div class="form-group">
-        <label>I am interested in</label>
+        <label data-en>I am interested in</label><label data-es>Estoy interesado/a en</label>
         <select>
-          <option value="">Select a service…</option>
+          <option value="" data-en>Select a service…</option><option value="" data-es>Selecciona un servicio…</option>
           <option value="Initial Session (90 min)">Initial Session (90 min)</option>
           <option value="Shiatsu Treatment (60 min)">Shiatsu Treatment (60 min)</option>
           <option value="Wellbeing Programme (6 sessions)">Wellbeing Programme (6 sessions)</option>
-          <option value="General enquiry">General enquiry</option>
+          <option value="General enquiry" data-en>General enquiry</option><option value="Consulta general" data-es>Consulta general</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Tell me a little about what brings you here…"></textarea>
+        <label data-en>Message</label><label data-es>Mensaje</label>
+        <textarea placeholder="Cuéntame qué te trae por aquí…"></textarea>
       </div>
       <button class="btn-submit" onclick="
   var name = this.closest('.contact-form').querySelector('input[type=text]').value;
   var msg = this.closest('.contact-form').querySelector('textarea').value;
   var text = encodeURIComponent('Hi, my name is ' + (name || 'a visitor from your website') + '. ' + (msg || ''));
   window.open('https://wa.me/34625998057?text=' + text, '_blank');
-">Send via WhatsApp</button>
+" data-en>Send via WhatsApp</button><button class="btn-submit" data-es onclick="var name=this.closest('.contact-form').querySelector('input[type=text]').value;var msg=this.closest('.contact-form').querySelector('textarea').value;var text=encodeURIComponent('Hola, me llamo '+(name||'un visitante de tu web')+'. '+(msg||''));window.open('https://wa.me/34625998057?text='+text,'_blank');">Enviar por WhatsApp</button>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">Javea Shiatsu</div>
-    <div class="footer-note">© 2025 Javea Shiatsu · javeashiatsu.com</div>
+    <div class="footer-note">© 2026 Javea Shiatsu · javeashiatsu.com</div>
   </footer>
 
   <script>
     function selectService(serviceName) {
-      // Pre-select the dropdown
       var select = document.querySelector('.contact-form select');
       select.value = serviceName;
-      // Scroll smoothly to the contact section
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-      // Briefly highlight the select to draw attention
       select.style.transition = 'border-color 0.4s';
       select.style.borderColor = 'rgba(249,247,243,0.7)';
       setTimeout(function() { select.style.borderColor = ''; }, 1500);
     }
+
+    function setLang(lang) {
+      document.body.classList.toggle('es', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.documentElement.lang = lang;
+      localStorage.setItem('lang', lang);
+    }
+
+    // Restore saved language preference
+    var saved = localStorage.getItem('lang');
+    if (saved === 'es') setLang('es');
   </script>
 </body>
 </html>
