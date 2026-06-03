@@ -825,11 +825,11 @@
     <div class="contact-form">
       <div class="form-group">
         <label data-en>Your name</label><label data-es>Tu nombre</label>
-        <input type="text" placeholder="Nombre completo" />
+        <input type="text" id="input-name" placeholder="Full name" />
       </div>
       <div class="form-group">
         <label data-en>Email address</label><label data-es>Correo electrónico</label>
-        <input type="email" placeholder="your@email.com" />
+        <input type="email" id="input-email" placeholder="your@email.com" />
       </div>
       <div class="form-group">
         <label data-en>I am interested in</label><label data-es>Estoy interesado/a en</label>
@@ -843,7 +843,7 @@
       </div>
       <div class="form-group">
         <label data-en>Message</label><label data-es>Mensaje</label>
-        <textarea placeholder="Cuéntame qué te trae por aquí…"></textarea>
+        <textarea id="input-message" placeholder="Tell me a little about what brings you here…"></textarea>
       </div>
       <button class="btn-submit" onclick="
   var name = this.closest('.contact-form').querySelector('input[type=text]').value;
@@ -894,6 +894,17 @@
       if (mEs) mEs.classList.toggle('active', lang === 'es');
       document.documentElement.lang = lang;
       localStorage.setItem('lang', lang);
+
+      // Swap form placeholders
+      var es = lang === 'es';
+      var nameInput = document.getElementById('input-name');
+      var msgInput = document.getElementById('input-message');
+      if (nameInput) nameInput.placeholder = es ? 'Nombre completo' : 'Full name';
+      if (msgInput) msgInput.placeholder = es ? 'Cuéntame qué te trae por aquí…' : 'Tell me a little about what brings you here…';
+
+      // Swap select placeholder option
+      var sel = document.querySelector('.contact-form select');
+      if (sel && sel.options[0]) sel.options[0].text = es ? 'Selecciona un servicio…' : 'Select a service…';
     }
 
     // Restore saved language preference
