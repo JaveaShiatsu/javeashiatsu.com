@@ -79,6 +79,56 @@
     }
     .nav-links a:hover { color: var(--ink); }
 
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* MOBILE MENU OVERLAY */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--paper);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .mobile-menu a em { font-style: italic; color: var(--accent); }
+    .mobile-menu .mobile-lang {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
     /* HERO */
     .hero {
       min-height: 100vh;
@@ -493,7 +543,9 @@
     /* MOBILE */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
+      .nav-links { display: none; }
+      .lang-switcher { display: none; }
+      .hamburger { display: flex; }
       .hero { grid-template-columns: 1fr; }
       .hero-left { padding: 4.5rem 1.5rem 3rem; }
       .hero-right { display: flex; min-height: 260px; }
@@ -560,7 +612,25 @@
       <span class="lang-sep">|</span>
       <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" onclick="closeMenu()" data-en>About</a>
+    <a href="#about" onclick="closeMenu()" data-es>Sobre mí</a>
+    <a href="#services" onclick="closeMenu()" data-en>Services</a>
+    <a href="#services" onclick="closeMenu()" data-es>Servicios</a>
+    <a href="#contact" onclick="closeMenu()" data-en>Contact</a>
+    <a href="#contact" onclick="closeMenu()" data-es>Contacto</a>
+    <div class="mobile-lang">
+      <button class="lang-btn active" onclick="setLang('en');closeMenu()" id="mob-btn-en">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" onclick="setLang('es');closeMenu()" id="mob-btn-es">ES</button>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -800,10 +870,28 @@
       setTimeout(function() { select.style.borderColor = ''; }, 1500);
     }
 
+    function toggleMenu() {
+      var menu = document.getElementById('mobile-menu');
+      var burger = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      burger.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+
+    function closeMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
     function setLang(lang) {
       document.body.classList.toggle('es', lang === 'es');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      var mEn = document.getElementById('mob-btn-en');
+      var mEs = document.getElementById('mob-btn-es');
+      if (mEn) mEn.classList.toggle('active', lang === 'en');
+      if (mEs) mEs.classList.toggle('active', lang === 'es');
       document.documentElement.lang = lang;
       localStorage.setItem('lang', lang);
     }
