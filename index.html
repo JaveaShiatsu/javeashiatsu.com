@@ -356,7 +356,7 @@
     }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 2px;
     }
     .service-card {
@@ -721,8 +721,8 @@
       <div class="services-header-left">
         <h2 data-en>Ways I can <em>help</em></h2><h2 data-es>Cómo puedo <em>ayudarte</em></h2>
         <p class="services-intro">
-          <span data-en>Each offering is designed to meet you where you are — whether you are experiencing acute discomfort, managing ongoing stress, or simply wish to maintain your wellbeing through regular practice. Shiatsu is equally valuable as preventive care for those simply wishing to feel more vital and at ease in daily life.</span>
-          <span data-es>Cada servicio está diseñado para encontrarte donde estás — ya sea que sufras molestias, manejes el estrés o simplemente desees mantener tu bienestar. El Shiatsu también es valioso como cuidado preventivo para quienes desean sentirse más vitales y en equilibrio en su vida diaria.</span>
+          <span data-en>Both offerings are designed to meet you where you are — whether you are seeking relief from a specific complaint or wish to maintain your wellbeing through regular practice. Shiatsu is equally valuable as preventive care for those simply wishing to feel more vital and at ease in daily life.</span>
+          <span data-es>Ambos servicios están diseñados para encontrarte donde estás — ya sea que sufras molestias, manejes el estrés o simplemente desees mantener tu bienestar. El Shiatsu también es valioso como cuidado preventivo para quienes desean sentirse más vitales y en equilibrio en su vida diaria.</span>
         </p>
       </div>
       <div>
@@ -741,16 +741,9 @@
       </div>
     </div>
     <div class="services-grid">
-      <div class="service-card" style="cursor:pointer;" onclick="selectService('Initial Session (90 min)')">
-        <div class="service-number">01</div>
-        <div class="service-title" data-en>Initial Session</div><div class="service-title" data-es>Sesión Inicial</div>
-        <div class="service-duration">90 minutes &nbsp;·&nbsp; €65</div>
-        <p class="service-desc" data-en>A thorough intake conversation followed by a full Zen Shiatsu massage treatment. We explore your health history, current concerns, and establish a foundation for ongoing care.</p>
-        <p class="service-desc" data-es>Una consulta inicial detallada seguida de un tratamiento completo de masaje Zen Shiatsu. Exploramos tu historial de salud y establecemos las bases para tu bienestar.</p>
-        <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-en>Book this →</div><div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-es>Reservar →</div>
-      </div>
+
       <div class="service-card" style="cursor:pointer;" onclick="selectService('Shiatsu Treatment (60 min)')">
-        <div class="service-number">02</div>
+        <div class="service-number">01</div>
         <div class="service-title" data-en>Shiatsu Treatment</div><div class="service-title" data-es>Tratamiento Shiatsu</div>
         <div class="service-duration">60 minutes &nbsp;·&nbsp; €50</div>
         <p class="service-desc" data-en>A complete Zen Shiatsu massage session working along the meridians of the body to dissolve tension, release blocked energy, and restore natural flow and vitality.</p>
@@ -758,7 +751,7 @@
         <div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-en>Book this →</div><div style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);" data-es>Reservar →</div>
       </div>
       <div class="service-card" style="cursor:pointer;" onclick="selectService('Wellbeing Programme (6 sessions)')">
-        <div class="service-number">03</div>
+        <div class="service-number">02</div>
         <div class="service-title" data-en>Wellbeing Programme</div><div class="service-title" data-es>Programa de Bienestar</div>
         <div class="service-duration" data-en>Series of 6 sessions &nbsp;·&nbsp; €250</div><div class="service-duration" data-es>Serie de 6 sesiones &nbsp;·&nbsp; €250</div>
         <p class="service-desc" data-en>A dedicated programme of six sessions tailored to your specific goals. Regular shiatsu massage deepens its effects over time, supporting sustained balance and resilience.</p>
@@ -835,7 +828,6 @@
         <label data-en>I am interested in</label><label data-es>Estoy interesado/a en</label>
         <select>
           <option value="" data-en>Select a service…</option><option value="" data-es>Selecciona un servicio…</option>
-          <option value="Initial Session (90 min)">Initial Session (90 min)</option>
           <option value="Shiatsu Treatment (60 min)">Shiatsu Treatment (60 min)</option>
           <option value="Wellbeing Programme (6 sessions)">Wellbeing Programme (6 sessions)</option>
           <option value="General enquiry" data-en>General enquiry</option><option value="Consulta general" data-es>Consulta general</option>
